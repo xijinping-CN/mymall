@@ -19,6 +19,25 @@ spring:
         min-idle: 0 # 连接池中的最小空闲连接
     timeout: 3000ms # 连接超时时间（毫秒）
 
+#  es 配置
+  data:
+#    mongodb:
+#      host: localhost # mongodb的连接地址
+#      port: 27017 # mongodb的连接端口号
+#      database: users # mongodb的连接的数据库
+#    elasticsearch:
+#      repositories:
+#        enabled: true
+#      cluster-nodes: 127.0.0.1:9300 # es的连接地址及端口号
+#      cluster-name: mymall # es集群的名称
+#  rabbitmq:
+#    host: localhost # rabbitmq的连接地址
+#    port: 5672 # rabbitmq的连接端口号
+#    virtual-host: /mall # rabbitmq的虚拟host
+#    username: mall # rabbitmq的用户名
+#    password: mall # rabbitmq的密码
+#    publisher-confirms: true #如果对异步消息需要回调必须设置为true
+
 mybatis:
   mapper-locations:
     - classpath:mapper/*.xml
@@ -39,3 +58,16 @@ jwt:
 
 #  注意是："tokenHead xxxxx.yyyyy.zzzzz"（后面是jwt的密文三部分）
 #               tokenHead 加密后的[tokenHeader.yyyyyy(userid和username等都可).zzzzz(secret)]
+# OSS相关配置信息
+aliyun:
+  oss:
+    endpoint: oss-cn-hangzhou.aliyuncs.com # oss对外服务的访问域名
+    accessKeyId: test # 访问身份验证中用到用户标识
+    accessKeySecret: test # 用户用于加密签名字符串和oss用来验证签名字符串的密钥
+    bucketName: macro-liu2 # oss的存储空间
+    policy:
+      expire: 300 # 签名有效期(S)
+    maxSize: 10 # 上传文件大小(M)
+    callback: http://localhost:8080/aliyun/oss/callback # 文件上传成功后的回调地址
+    dir:
+      prefix: mall/images/ # 上传文件夹路径前缀
